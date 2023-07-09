@@ -15,6 +15,7 @@ public class PlayerInHome : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
     }
+     
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _requiredValue = 1f;
@@ -36,6 +37,5 @@ public class PlayerInHome : MonoBehaviour
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _requiredValue, _recoveryRate * Time.deltaTime);
             yield return null;
         }
-
     }
 }
