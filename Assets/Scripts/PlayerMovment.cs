@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
+
 public class PlayerMovment : MonoBehaviour
 {
     private const string AnimationPlayerRun = "Run";
