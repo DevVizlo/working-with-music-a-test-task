@@ -18,16 +18,12 @@ public class PlayerInHome : MonoBehaviour
      
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _requiredValue = 1f;
-        _audioSource.Play();
-        _activeCoroutine = StartCoroutine(ChangeVolume());
+        SaundPlay();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _requiredValue = 0f;
-        StopCoroutine(_activeCoroutine);
-        _activeCoroutine = StartCoroutine(ChangeVolume());
+        SaundStop();
     }
 
     private IEnumerator ChangeVolume()
@@ -37,5 +33,19 @@ public class PlayerInHome : MonoBehaviour
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _requiredValue, _recoveryRate * Time.deltaTime);
             yield return null;
         }
+    }
+
+    private void SaundPlay()
+    {
+        _requiredValue = 1f;
+        _audioSource.Play();
+        _activeCoroutine = StartCoroutine(ChangeVolume());
+    }
+
+    private void SaundStop()
+    {
+        _requiredValue = 0f;
+        StopCoroutine(_activeCoroutine);
+        _activeCoroutine = StartCoroutine(ChangeVolume());
     }
 }
